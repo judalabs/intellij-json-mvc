@@ -1,6 +1,6 @@
-package org.jetbrains.plugins.template.services
+package com.github.judalabs.intellijjsonmvc.services
 
-import org.jetbrains.plugins.template.MyBundle
+import com.github.judalabs.intellijjsonmvc.MyBundle
 
 class MyApplicationService {
 
