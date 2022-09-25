@@ -33,14 +33,12 @@ class GenerateJsonActionKotlin : AnAction("POJO From JSON") {
         val element = psiFile.findElementAt(offset)
         if (element != null) {
 
-            var initialClass = PsiTreeUtil.getTopmostParentOfType(element, PsiClass::class.java)
+            val initialClass = PsiTreeUtil.getTopmostParentOfType(element, PsiClass::class.java)
             val allFields = generateJson(initialClass)
             println(allFields)
             Messages.showMessageDialog(anActionEvent.project, allFields, "JSON", null)
         }
     }
-
-    private val s = TAB
 
     private fun generateJson(actualClass: PsiClass?, delayedIdent: String = ""): String? {
         val ident = delayedIdent.plus(TAB)
@@ -62,7 +60,7 @@ class GenerateJsonActionKotlin : AnAction("POJO From JSON") {
             }
     }
 
-    fun generateLoremIpsum(field: PsiField?): String {
+    private fun generateLoremIpsum(field: PsiField?): String {
         val fieldName = field?.type?.presentableText?.lowercase()
         if(fieldName.equals("uuid"))
             return UUID.randomUUID().toString()
@@ -71,20 +69,20 @@ class GenerateJsonActionKotlin : AnAction("POJO From JSON") {
         if(listOf("double", "bigdecimal").contains(fieldName))
             return RandomUtils.nextDouble().toString()
         if(fieldName.equals("string"))
-            return RandomStringUtils.randomAlphabetic(RandomUtils.nextInt(10));
+            return RandomStringUtils.randomAlphabetic(RandomUtils.nextInt(10))
         return ""
     }
 
-    fun findClass(field: PsiField?): PsiClass? {
+    private fun findClass(field: PsiField?): PsiClass? {
         val project = field?.project!!
         val actualPackage = JavaPsiFacade.getInstance(project).findPackage((field.containingFile as PsiJavaFileImpl).packageName)
         PsiUtil.resolveClassInClassTypeOnly(field.type)
-        var fieldName = field.type.presentableText
-        var referedClass = actualPackage?.findClassByShortName(fieldName, GlobalSearchScope.allScope(project))
-        if(referedClass?.size == 0)
-            return null
+        val fieldName = field.type.presentableText
+        val referedClass = actualPackage?.findClassByShortName(fieldName, GlobalSearchScope.allScope(project))
+        return if(referedClass?.size == 0)
+            null
         else
-        return referedClass?.get(0);
+            referedClass?.get(0);
     }
 
 }
