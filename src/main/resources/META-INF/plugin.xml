@@ -1,18 +1,19 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.judalabs.intellijjsonmvc</id>
-    <name>intellij-json-mvc</name>
+    <name>Json Mvc - Manage, View and Converter</name>
     <vendor>judalabs</vendor>
 
-    <depends>com.intellij.modules.platform</depends>
+<!--    <depends>com.intellij.modules.platform</depends>-->
+<!--    <depends>com.intellij.modules.lang</depends>-->
+    <depends>com.intellij.modules.java</depends>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.judalabs.intellijjsonmvc.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.judalabs.intellijjsonmvc.services.MyProjectService"/>
-    </extensions>
-
-    <applicationListeners>
-        <listener class="com.github.judalabs.intellijjsonmvc.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
+    <actions>
+        <action id="com.github.judalabs.intellijjsonmvc.actions.GenerateJsonActionKotlin"
+                class="com.github.judalabs.intellijjsonmvc.actions.GenerateJsonActionKotlin" text="to-Pojo"
+                description="From json to pojo">
+            <add-to-group group-id="EditorTabActionGroup" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="alt NUMPAD9"/>
+        </action>
+    </actions>
 </idea-plugin>
