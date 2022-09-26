@@ -76,7 +76,7 @@ class GenerateJsonActionKotlin : AnAction("POJO From JSON") {
         if (listOf("double", "bigdecimal").contains(fieldName))
             return RandomUtils.nextDouble().toString()
         if (fieldName.equals("string"))
-            return RandomStringUtils.randomAlphabetic(RandomUtils.nextInt(10))
+            return "\"${RandomStringUtils.randomAlphabetic(RandomUtils.nextInt(10))}\""
         if(fieldName.equals("boolean"))
             return RandomUtils.nextBoolean().toString()
         return "null"
