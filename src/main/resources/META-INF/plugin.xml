@@ -16,4 +16,11 @@
             <keyboard-shortcut keymap="$default" first-keystroke="alt NUMPAD9"/>
         </action>
     </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <notificationGroup id="JSON-generated"
+                           displayType="BALLOON"
+                           key="notification.group.name"/>
+    </extensions>
+
 </idea-plugin>
