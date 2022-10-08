@@ -15,9 +15,10 @@
 - [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
 
 <!-- Plugin description -->
-✅Generate a JSON in your clipboard form your POJO file.<br><br>
-🚧 Beautify POJO's<br>
-🚧 Generate a POJO from a JSON
+✅ Generate a JSON in your clipboard form your POJO file <kbd> Alt + [ </kbd> <br><br>
+🚧 Generate a POJO from a JSON(In progress)<br>
+🚧 Beautify POJO's(TODO)<br>
+🚧 Generate SQL FROM POJO
 <!-- Plugin description end -->
 
 ## Installation

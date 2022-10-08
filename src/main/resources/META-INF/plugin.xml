@@ -13,7 +13,7 @@
                 class="com.github.judalabs.intellijjsonmvc.actions.GenerateJsonActionKotlin" text="to-Pojo"
                 description="From json to pojo">
             <add-to-group group-id="EditorTabActionGroup" anchor="first"/>
-            <keyboard-shortcut keymap="$default" first-keystroke="alt NUMPAD9"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="alt OPEN_BRACKET"/>
         </action>
     </actions>
 

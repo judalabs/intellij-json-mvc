@@ -1,15 +1,15 @@
 package com.github.judalabs.intellijjsonmvc.actions
 
-import com.intellij.notification.NotificationGroupManager
-import com.intellij.notification.NotificationType
+import com.github.judalabs.intellijjsonmvc.utils.NotificationUtils
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
-import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.ide.CopyPasteManager
-import com.intellij.psi.*
+import com.intellij.psi.JavaPsiFacade
+import com.intellij.psi.PsiClass
+import com.intellij.psi.PsiField
+import com.intellij.psi.PsiJavaFile
 import com.intellij.psi.search.GlobalSearchScope
-import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.psi.util.PsiTypesUtil
 import com.intellij.util.ui.TextTransferable
 import org.apache.commons.lang.RandomStringUtils
@@ -22,28 +22,18 @@ private const val TAB = "\t"
 class GenerateJsonActionKotlin : AnAction("POJO From JSON") {
 
     override fun actionPerformed(anActionEvent: AnActionEvent) {
-        val editor: Editor? = anActionEvent.getData(CommonDataKeys.EDITOR)
-        val psiFile: PsiFile? = anActionEvent.getData(CommonDataKeys.PSI_FILE)
         val project = anActionEvent.getData(CommonDataKeys.PROJECT)
-        if (editor == null || psiFile == null || psiFile.fileType.description != "Java") {
+        val psiFile: PsiJavaFile = anActionEvent.getData(CommonDataKeys.PSI_FILE) as PsiJavaFile
+        val classesFromFile = psiFile.classes
+        if (psiFile.fileType.description != "Java" || classesFromFile.isEmpty()) {
             return
         }
-        val offset: Int = editor.caretModel.offset
 
-        val element = psiFile.findElementAt(offset)
-        if (element != null) {
+        val allFields = generateJson(classesFromFile[0])
+        println(allFields)
 
-            val initialClass = PsiTreeUtil.getTopmostParentOfType(element, PsiClass::class.java)
-            val allFields = generateJson(initialClass)
-            println(allFields)
-
-            CopyPasteManager.getInstance().setContents(TextTransferable(allFields))
-
-            NotificationGroupManager.getInstance()
-                .getNotificationGroup("JSON-generated")
-                .createNotification("JSON generated for class ${psiFile.name}", NotificationType.INFORMATION)
-                .notify(project);
-        }
+        CopyPasteManager.getInstance().setContents(TextTransferable(allFields))
+        NotificationUtils.jsonGenerated(project, psiFile.name)
     }
 
     private fun generateJson(actualClass: PsiClass?, delayedIdent: String = ""): String? {
