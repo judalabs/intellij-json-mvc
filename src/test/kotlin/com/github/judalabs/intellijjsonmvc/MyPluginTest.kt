@@ -16,16 +16,6 @@ class MyPluginTest : BasePlatformTestCase() {
         assertFalse(PsiErrorElementUtil.hasErrors(project, xmlFile.virtualFile))
 
         assertNotNull(xmlFile.rootTag)
-
-        xmlFile.rootTag?.let {
-            assertEquals("foo", it.name)
-            assertEquals("bar", it.value.text)
-        }
     }
 
-    override fun getTestDataPath() = "src/test/testData/rename"
-
-    fun testRename() {
-        myFixture.testRename("foo.xml", "foo_after.xml", "a2")
-    }
 }
