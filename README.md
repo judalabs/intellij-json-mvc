@@ -14,7 +14,7 @@
 
 <!-- Plugin description -->
 ✅ Generate a JSON in your clipboard form your POJO file <kbd> Alt + [ </kbd> <br><br>
-Supports @JsonProperty via getter methods
+It looks at your getter methods, or @JsonProperty 
 
 🚧 Generate a POJO from a JSON(In progress)<br>
 🚧 Beautify POJO's(TODO)<br>
