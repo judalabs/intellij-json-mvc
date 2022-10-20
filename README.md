@@ -1,7 +1,6 @@
 # intellij-json-mvc
 
-![Build](https://github.com/judalabs/intellij-json-mvc/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/20017)
+![Version](https://img.shields.io/jetbrains/plugin/v/20017?style=flat-square)
 
 ## Template ToDo list
 - [x] Create a new [IntelliJ Platform Plugin Template][template] project.
@@ -15,6 +14,8 @@
 
 <!-- Plugin description -->
 ✅ Generate a JSON in your clipboard form your POJO file <kbd> Alt + [ </kbd> <br><br>
+Supports @JsonProperty via getter methods
+
 🚧 Generate a POJO from a JSON(In progress)<br>
 🚧 Beautify POJO's(TODO)<br>
 🚧 Generate SQL FROM POJO
